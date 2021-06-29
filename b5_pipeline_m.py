@@ -5,6 +5,8 @@ import os
 import cv2,glob,time, random
 import warnings
 
+import warnings
+warnings.filterwarnings("ignore")
 from tqdm import tqdm
 
 
@@ -24,27 +26,27 @@ from albumentations.pytorch import ToTensorV2
 import timm
 
 from sklearn.metrics import accuracy_score, roc_auc_score
-from sklearn.model_selection import train_test_split
-
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.model_selection import StratifiedKFold
 ###################################################################
 #Configuration
 
 MODEL_ARCH= "efficientnet_b5"
-EPOCHS = 5
+EPOCHS = 15
 IMG_SIZE = 512
-BATCH_SIZE = 8
-VAL_BATCH_SIZE = 16
+BATCH_SIZE = 32
+VAL_BATCH_SIZE = 32
 ITER_FREQ = 200
 NUM_WORKERS = 8
 SEED = 42
 MAX_NORM = 1000
 ITERS_TO_ACCUMULATE = 1
 SCHEDULER_UPDATE ='epoch' #Can be on a 'batch' basis as well
-ITER_VISUALS = 5
+ITER_VISUALS = 200
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-DEBUG = True #
+DEBUG = False #
 
 def prepare_labels(y):
     values = np.array(y)
@@ -58,27 +60,26 @@ def prepare_labels(y):
     y = onehot_encoded
     return y, label_encoder
 
-
 class retinopathy2015(Dataset):
-    def __init__(self, X, y, transform=None):
+    def __init__(self, df, transforms=None):
         #         self.df = df
-        self.imageList = X
+        self.imageList = df['image'].values
         self.transform = None
-        if transform is None:
+        if transforms is None:
             self.transform = A.Compose([
                 A.Resize(IMG_SIZE, IMG_SIZE),
                 ToTensorV2()
             ])
         else:
             self.transform = transforms
-        self.labels = y
+        self.labels, le = prepare_labels(df['level'])
 
     def __len__(self):
         return len(self.imageList)
 
     def __getitem__(self, idx):
         file_name = self.imageList[idx]
-        img = cv2.imread(f"../input/resized-2015-2019-blindness-detection-images/resized train 15/{file_name}.jpg")
+        img = cv2.imread(f"../resized_train_15/{file_name}.jpg")
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         image = self.transform(image=img)
         image = image['image']
@@ -149,12 +150,9 @@ def train_fn(model, dataloader, device, epoch, optimizer, criterion, scheduler):
     model.train()
     scaler = GradScaler()
     start_time = time.time()
-    val_roc =[]
-    val_loss =[]
-    train_roc = []
-    train_loss =[]
-    PREDS =[]
-    TARGETS =[]
+    PREDS = []
+    TARGETS = []
+
     loader = tqdm(dataloader, total=len(dataloader))
     for step, (images, labels) in enumerate(loader):
 
@@ -164,9 +162,11 @@ def train_fn(model, dataloader, device, epoch, optimizer, criterion, scheduler):
 
         with autocast():
             output = model(images)
-            PREDS.append(output)
-            TARGETS.append(labels)
             loss = criterion(output, labels)
+            #########################
+            PREDS += [output.sigmoid()]
+            TARGETS += [labels.detach().cpu()]
+            ##########################
             losses.update(loss.item(), BATCH_SIZE)
             scaler.scale(loss).backward()
             grad_norm = nn.utils.clip_grad_norm_(model.parameters(), max_norm=MAX_NORM)
@@ -175,19 +175,29 @@ def train_fn(model, dataloader, device, epoch, optimizer, criterion, scheduler):
                 scaler.update()
                 optimizer.zero_grad()
 
-        if step%ITER_VISUALS ==0:
-            PREDS = torch.cat(PREDS).cpu().numpy()
-            TARGETS = torch.cat(TARGETS).cpu().numpy()
-            train_roc_auc = macro_multilabel_auc(TARGETS, PREDS)
-            train_loss_avg = losses.avg
-            val_roc_auc, val_loss_avg = valid_fn()
-
-            train_roc.append(train_roc_auc)
-            train_loss.append(train_loss_avg)
-
-            val_roc.append(val_roc_auc)
-            val_loss.append(val_loss_avg)
-
+        # if step % ITER_VISUALS == 0 and step != 0:
+        #     PRE = torch.cat(PREDS).detach().cpu()
+        #     PRE = PRE.numpy()
+        #
+        #     TAR = torch.cat(TARGETS).numpy()
+        #
+        #     train_roc_auc = macro_multilabel_auc(TAR, PRE)
+        #     t_roc_auc = round(train_roc_auc,2)
+        #     train_loss_avg = losses.avg
+        #     ep = step / len(dataloader) + epoch
+        #     ep = round(ep,2)
+        #     val_roc_auc, val_loss_avg = valid_fn(ep,
+        #                                          model,
+        #                                          val_criterion,
+        #                                          val_loader,
+        #                                          device,
+        #                                          scheduler)
+        #
+        #     train_roc.append(train_roc_auc)
+        #     train_loss.append(train_loss_avg)
+        #
+        #     val_roc.append(val_roc_auc)
+        #     val_loss.append(val_loss_avg)
 
         if scheduler is not None and SCHEDULER_UPDATE == 'batch':
             scheduler.step()
@@ -200,10 +210,11 @@ def train_fn(model, dataloader, device, epoch, optimizer, criterion, scheduler):
                   'Batch Time {batch_time.val:.3f}s ({batch_time.avg:.3f}s)\t'
                   'Data Time {data_time.val:.3f}s ({data_time.avg:.3f}s)\t'
                   'Loss: {loss.val:.4f} ({loss.avg:.4f})'.format((epoch + 1),
-                                                                 step, len(dataloader),
-                                                                 batch_time=batch_time,
-                                                                 data_time=data_time,
-                                                                 loss=losses))
+                                                 step, len(dataloader),
+                                                 batch_time=batch_time,
+                                                 data_time=data_time,
+                                                 loss=losses
+                                                 ))
             # accuracy=accuracies))
         # To check the loss real-time while iterating over data.   'Accuracy {accuracy.val:.4f} ({accuracy.avg:.4f})'
         loader.set_description(f'Training Epoch {epoch + 1}/{EPOCHS}')
@@ -212,13 +223,13 @@ def train_fn(model, dataloader, device, epoch, optimizer, criterion, scheduler):
     #     if scheduler is not None and SCHEDULER_UPDATE == 'epoch':
     #         scheduler.step(losses.avg)
 
-    return losses.avg,train_roc,train_loss,val_roc,val_loss
+    return losses.avg #, train_roc, train_loss, val_roc, val_loss
 
 
 def valid_fn(epoch, model, criterion, val_loader, device, scheduler):
     model.eval()
     losses = AverageMeter()
-    accuracies = AverageMeter()
+    # accuracies = AverageMeter()
     PREDS = []
     TARGETS = []
     loader = tqdm(val_loader, total=len(val_loader))
@@ -239,13 +250,15 @@ def valid_fn(epoch, model, criterion, val_loader, device, scheduler):
     roc_auc = macro_multilabel_auc(TARGETS, PREDS)
     if scheduler is not None and SCHEDULER_UPDATE == 'epoch':
         scheduler.step(losses.avg)
-
+    print(f"Validation ROC AUC -> {round(roc_auc,2)}")
     return losses.avg, roc_auc
 
 
-def engine(device, X_train, X_val, y_train, y_val):
-    train_data = retinopathy2015(X_train, y_train, transform=None)
-    val_data = retinopathy2015(X_val, y_val, transform=None)
+def engine(device,df,fold):
+    df_train = df[df['folds'] != fold]
+    df_val = df[df['folds'] == fold]
+    train_data = retinopathy2015(df_train, transforms=None)
+    val_data = retinopathy2015(df_val, transforms=None)
 
     train_loader = DataLoader(train_data,
                               batch_size=BATCH_SIZE,
@@ -275,34 +288,27 @@ def engine(device, X_train, X_val, y_train, y_val):
     loss = []
     accuracy = []
 
-    train_roc =[]
-    train_loss =[]
-    val_loss =[]
-    val_roc =[]
+    out_dict = {
+        'train_loss': [],
+        'val_roc': [],
+        'val_loss': []
+    }
 
     START_EPOCH = 0
     for epoch in range(START_EPOCH, EPOCHS):
         epoch_start = time.time()
-        avg_loss,t_roc,t_loss,v_roc,v_loss = train_fn(model, train_loader, device, epoch, optimizer, criterion, scheduler)
-
-        train_roc.append(t_roc)
-        train_loss.append(t_loss)
-        val_roc.append(v_roc)
-        val_loss.append(v_loss)
-
-        out_dict ={
-            'train_roc' : train_roc,
-            'train_loss': train_loss,
-            'val_roc': val_roc,
-            'val_loss': val_loss
-        }
-
+        avg_loss = train_fn(model, train_loader, device, epoch, optimizer, criterion, scheduler,
+                                                      val_criterion,val_loader)
+        out_dict['train_loss'].append(avg_loss)
         torch.cuda.empty_cache()
         avg_val_loss, roc_auc_score = valid_fn(epoch, model, val_criterion, val_loader, device, scheduler)
         epoch_end = time.time() - epoch_start
 
         print(f'Validation accuracy after epoch {epoch + 1}: {roc_auc_score:.4f}')
         loss.append(avg_loss)
+
+        out_dict['val_loss'].append(avg_val_loss)
+        out_dict['val_roc'].append(roc_auc_score)
 
         content = f'Epoch {epoch + 1} - avg_train_loss: {avg_loss:.4f}  avg_val_loss: {avg_val_loss:.4f} roc_auc_score: {roc_auc_score:.4f} time: {epoch_end:.0f}s'
         with open(f'GPU_{MODEL_ARCH}.txt', 'a') as appender:
@@ -316,16 +322,21 @@ def engine(device, X_train, X_val, y_train, y_val):
 
     return loss
 
-if __name__ == 'main':
-    df_2015 = pd.read_csv("../input/resized-2015-2019-blindness-detection-images/labels/trainLabels15.csv")
+if __name__ == '__main__':
+    df_2015 = pd.read_csv("../labels/trainLabels15.csv")
     df_2015['level'].value_counts()
     if DEBUG:
         df = df_2015.sample(200).reset_index(drop=True)
     else:
         df = df_2015.sample(frac=1.0, random_state=10).reset_index(drop=True)
-    y, le = prepare_labels(df['level'])
-    X = df['image'].values
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
-    engine(device, X_train, X_test, y_train, y_test)
+    skf = StratifiedKFold(n_splits=7, shuffle=True, random_state=42)
+    df['folds'] = 0
+    target = df.loc[:, 'level']
+    fold_no = 0
+    for train_index, test_index in skf.split(df, target):
+        df.loc[test_index, 'folds'] = fold_no
+        fold_no += 1
+    fold = 2
+    engine(device, df, fold)
 
 
