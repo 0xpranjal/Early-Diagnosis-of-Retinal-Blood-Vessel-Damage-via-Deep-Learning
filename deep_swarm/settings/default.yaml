@@ -1,0 +1,119 @@
+DeepSwarm:
+    save_folder:
+    metrics: accuracy
+    max_depth: 15
+    reuse_patience: 1
+
+    aco:
+        pheromone:
+            start: 0.1
+            decay: 0.1
+            evaporation: 0.1
+            verbose: False
+        greediness: 0.5
+        ant_count: 16
+
+    backend:
+        epochs: 15
+        batch_size: 64
+        patience: 5
+        loss: sparse_categorical_crossentropy
+        verbose: False
+
+    spatial_nodes: [InputNode, Conv2DNode, DropoutSpatialNode, BatchNormalizationNode, Pool2DNode]
+    flat_nodes: [FlattenNode, DenseNode, DropoutFlatNode, BatchNormalizationFlatNode]
+
+Nodes:
+
+    InputNode:
+        type: Input
+        attributes: 
+            shape: [!!python/tuple [28, 28, 1]]
+        transitions:
+            Conv2DNode: 1.0
+
+    Conv2DNode:
+        type: Conv2D
+        attributes:
+            filter_count: [32, 64, 128]
+            kernel_size: [1, 3, 5]
+            activation: [ReLU]
+        transitions:
+            Conv2DNode: 0.8
+            Pool2DNode: 1.2
+            FlattenNode: 1.0
+            DropoutSpatialNode: 1.1
+            BatchNormalizationNode: 1.2
+    
+    DropoutSpatialNode:
+        type: Dropout
+        attributes:
+            rate: [0.1, 0.3]
+        transitions:
+            Conv2DNode: 1.1
+            Pool2DNode: 1.0
+            FlattenNode: 1.0
+            BatchNormalizationNode: 1.1
+
+    BatchNormalizationNode:
+        type: BatchNormalization
+        attributes: {}
+        transitions:
+            Conv2DNode: 1.1
+            Pool2DNode: 1.1
+            DropoutSpatialNode: 1.0
+            FlattenNode: 1.0
+
+    Pool2DNode:
+        type: Pool2D
+        attributes:
+            pool_type: [max, average]
+            pool_size: [2]
+            stride: [2, 3]
+        transitions:
+            Conv2DNode: 1.1
+            FlattenNode: 1.0
+            BatchNormalizationNode: 1.1
+
+    FlattenNode:
+        type: Flatten
+        attributes: {}
+        transitions:
+            DenseNode: 1.0
+            OutputNode: 0.8
+            BatchNormalizationFlatNode: 0.9
+
+    DenseNode:
+        type: Dense
+        attributes:
+            output_size: [64, 128]
+            activation: [ReLU, Sigmoid]
+        transitions:
+            DenseNode: 0.8
+            DropoutFlatNode: 1.2
+            BatchNormalizationFlatNode: 1.2
+            OutputNode: 1.0
+
+    DropoutFlatNode:
+        type: Dropout
+        attributes:
+            rate: [0.1, 0.3]
+        transitions:
+            DenseNode: 1.0
+            BatchNormalizationFlatNode: 1.0
+            OutputNode: 0.9
+
+    BatchNormalizationFlatNode:
+        type: BatchNormalization
+        attributes: {}
+        transitions:
+            DenseNode: 1.1
+            DropoutFlatNode: 1.1
+            OutputNode: 0.9
+
+    OutputNode:
+        type: Output
+        attributes:
+            output_size: [10]
+            activation: [Softmax]
+        transitions: {}
