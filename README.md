@@ -11,8 +11,8 @@
 * Models to be covered
    * Efficientnet B5
    * Resnet 200D
-   * Add in your suggestions here
+   * **Add in your suggestions here**
  
- * Deep Swarm
+ ## Deep Swarm
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
    * Need to write TF code for loading data for optimisation     
