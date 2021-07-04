@@ -16,3 +16,11 @@
  ## Deep Swarm
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
    * Need to write TF code for loading data for optimisation     
+
+ ## psoCNN
+   * Completed pipeline, hopefully works
+   * Dataset path to be modified in psoCNN.py
+   * Need to decide on hyperparameters 
+   * [Reference paper](https://www.sciencedirect.com/science/article/abs/pii/S2210650218309246)
+   * Pipeline taken from [here](https://github.com/feferna/psoCNN)
+   * [This](https://www.kaggle.com/xhlulu/aptos-2019-densenet-keras-starter) kaggle kernel was also referenced a bit
