@@ -1,7 +1,7 @@
 DeepSwarm:
     save_folder:
     metrics: accuracy
-    max_depth: 15
+    max_depth: 4
     reuse_patience: 1
 
     aco:
@@ -11,10 +11,10 @@ DeepSwarm:
             evaporation: 0.1
             verbose: False
         greediness: 0.5
-        ant_count: 16
+        ant_count: 8 
 
     backend:
-        epochs: 15
+        epochs: 1
         batch_size: 64
         patience: 5
         loss: sparse_categorical_crossentropy
@@ -28,7 +28,7 @@ Nodes:
     InputNode:
         type: Input
         attributes: 
-            shape: [!!python/tuple [28, 28, 1]]
+            shape: [!!python/tuple [128,128, 3]]
         transitions:
             Conv2DNode: 1.0
 

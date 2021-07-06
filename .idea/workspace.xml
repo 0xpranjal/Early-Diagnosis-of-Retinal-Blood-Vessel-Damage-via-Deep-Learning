@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4818910-c267-421e-9429-2ad818b3188b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/deep_swarm/retinopathy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/context.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/mnist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/saves/2021-07-02-20-09-53/deepswarm.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/settings/default.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +73,9 @@
       <workItem from="1625037573990" duration="418000" />
       <workItem from="1625131597133" duration="1291000" />
       <workItem from="1625207715625" duration="293000" />
+      <workItem from="1625466741623" duration="1492000" />
+      <workItem from="1625494053438" duration="347000" />
+      <workItem from="1625543851347" duration="969000" />
     </task>
     <servers />
   </component>
@@ -83,6 +92,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1624986837109">
