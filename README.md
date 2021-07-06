@@ -10,7 +10,7 @@
    * Resnet 200D
    * **Add in your suggestions here**
 
- ## Deep Swarm
+ ## Deep Swarm(Swarm based optimisation for finding optimal Neural Network Architecture using Ant Colony Optimisation)
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
    * Pipeline ready for training, the image size and some hyperparameters are to be decided now
    * [Paper](https://arxiv.org/abs/1905.07350)     
