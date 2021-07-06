@@ -15,7 +15,7 @@
  
  ## Deep Swarm
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
-   * Need to write TF code for loading data for optimisation     
+   * Pipeline ready for training, the image size and some hyperparameters are to be decided now     
 
  ## psoCNN
    * Completed pipeline, hopefully works
