@@ -1,12 +1,9 @@
 # Swarm-Research
 
 ## Training plan for image models(Without Swarm Optimisation)
-* Pretrain models on 2015 dataset and then train on 2019 dataset
-* The number of epochs used is yet to be decided
-* K-Fold validation on 2019 dataset.
-    * Basically, the model would train as it is on 2015 dataset
-    * On the 2019 dataset, folds would be used to check for accuracy
-* Total number of images is 35000 + 4000 -> 39000 images.(Cause we got V100, can change this as well)
+* The models would be trained on the 2015 Kaggle Competition dataset-> [Link](https://www.kaggle.com/c/diabetic-retinopathy-detection)
+* The images in the dataset have an irregular size so we use the dataset -> [Link](https://www.kaggle.com/benjaminwarner/resized-2015-2019-blindness-detection-images)
+* Total number of images is 35000 and we apply 5 fold stratified K Fold Validation.
 
 * Models to be covered
    * Efficientnet B5
@@ -15,7 +12,8 @@
 
  ## Deep Swarm
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
-   * Pipeline ready for training, the image size and some hyperparameters are to be decided now     
+   * Pipeline ready for training, the image size and some hyperparameters are to be decided now
+   * [Paper](https://arxiv.org/abs/1905.07350)     
 
  ## psoCNN
    * Completed pipeline, hopefully works
