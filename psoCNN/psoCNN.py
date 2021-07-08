@@ -10,6 +10,7 @@ from population import Population
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 
 from PIL import Image
 
@@ -48,14 +49,14 @@ class psoCNN:
         input_height = 224
         input_channels = 3
         output_dim = 5
-        train_df = pd.read_csv('../input/aptos2019-blindness-detection/train.csv')
+        train_df = pd.read_csv('./aptos2019-blindness-detection/train.csv')
         
         N = train_df.shape[0]
         x_train = np.empty((N, 224, 224, 3), dtype=np.uint8)
 
         for i, image_id in enumerate(tqdm(train_df['id_code'])):
             x_train[i, :, :, :] = preprocess_image(
-                f'../input/aptos2019-blindness-detection/train_images/{image_id}.png'
+                f'./aptos2019-blindness-detection/train_images/{image_id}.png'
             )
         
         y_train = pd.get_dummies(train_df['diagnosis']).values

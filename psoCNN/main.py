@@ -23,19 +23,19 @@ if __name__ == '__main__':
     
     number_runs = 20
     number_iterations = 10
-    population_size = 50
+    population_size = 10
 
     batch_size_pso = 32
     batch_size_full_training = 32
     
     epochs_pso = 1
-    epochs_full_training = 100
+    epochs_full_training = 5
     
     max_conv_output_channels = 256
     max_fully_connected_neurons = 300
 
-    min_layer = 3
-    max_layer = 20
+    min_layer = 5
+    max_layer = 8
 
     # Probability of each layer type (should sum to 1)
     probability_convolution = 0.6

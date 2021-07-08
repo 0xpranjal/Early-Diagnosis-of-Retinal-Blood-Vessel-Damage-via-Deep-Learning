@@ -155,36 +155,41 @@ class Particle:
                     in_w = self.input_width
                     in_h = self.input_height
                     in_c = self.input_channels
+                    print("Added init conv")
                     self.model.add(Conv2D(n_out_filters, kernel_size, strides=(1,1), padding="same", data_format="channels_last", kernel_initializer='he_normal', bias_initializer='he_normal', activation=None, input_shape=(in_w, in_h, in_c)))
                     self.model.add(BatchNormalization())
                     self.model.add(Activation("relu"))
                 else:
                     self.model.add(Dropout(dropout_rate))
+                    print("Added conv")
                     self.model.add(Conv2D(n_out_filters, kernel_size, strides=(1,1), padding="same", kernel_initializer='he_normal', bias_initializer='he_normal', activation=None))
                     self.model.add(BatchNormalization())
                     self.model.add(Activation("relu"))
 
             if list_layers[i]["type"] == "max_pool":
                 kernel_size = list_layers[i]["kernel"]
-
+                print("Added max pool")
                 self.model.add(MaxPooling2D(pool_size=(3, 3), strides=2))
 
             if list_layers[i]["type"] == "avg_pool":
                 kernel_size = list_layers[i]["kernel"]
-
+                print("Added avg pool")
                 self.model.add(AveragePooling2D(pool_size=(3, 3), strides=2))
             
             if list_layers[i]["type"] == "fc":
                 if list_layers[i-1]["type"] != "fc":
+                    print("Added flatten")
                     self.model.add(Flatten())
 
                 self.model.add(Dropout(dropout_rate))
 
                 if i == len(list_layers) - 1:
+                    print("Added final fc")
                     self.model.add(Dense(list_layers[i]["ou_c"], kernel_initializer='he_normal', bias_initializer='he_normal', activation=None))
                     self.model.add(BatchNormalization())
                     self.model.add(Activation("softmax"))
                 else:
+                    print("Added fc")
                     self.model.add(Dense(list_layers[i]["ou_c"], kernel_initializer='he_normal', bias_initializer='he_normal', kernel_regularizer=regularizers.l2(0.01), activation=None))
                     self.model.add(BatchNormalization())
                     self.model.add(Activation("relu"))
