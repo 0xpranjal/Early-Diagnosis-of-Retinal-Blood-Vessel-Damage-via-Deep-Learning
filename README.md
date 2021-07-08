@@ -16,8 +16,8 @@
    * [Paper](https://arxiv.org/abs/1905.07350)     
 
  ## psoCNN
-   * Completed pipeline, hopefully works
-   * Dataset path to be modified in psoCNN.py
+   * Completed pipeline, hopefully works -> Small issue while running on instance with regards to loss and softmax
+   * Dataset path to be modified in psoCNN.py -> Done but does not use the stratified kfold as of now. Uses the raw dataset
    * Need to decide on hyperparameters
    * [Reference paper](https://www.sciencedirect.com/science/article/abs/pii/S2210650218309246)
    * Pipeline taken from [here](https://github.com/feferna/psoCNN)
