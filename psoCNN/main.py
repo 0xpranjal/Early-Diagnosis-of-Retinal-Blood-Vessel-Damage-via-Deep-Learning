@@ -1,9 +1,9 @@
-import keras
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 from psoCNN import psoCNN
 import numpy as np
 import time
-import keras.backend
-import tensorflow as tf
+from tensorflow.compat.v1.keras import backend
 import os
 import matplotlib
 import matplotlib.pyplot as plt

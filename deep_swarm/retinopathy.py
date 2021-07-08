@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 tf.disable_v2_behavior()
 
-def format_images(arr):
+def format_images(arr,name):
     train_images = []
     for i in tqdm(arr):
         img =cv2.imread(i)
@@ -20,38 +20,52 @@ def format_images(arr):
         img = cv2.resize(img,(128,128))
         train_images.append(img)
     x_train = np.asarray(train_images)
+    np.save(f"{name}.npy",x_train)
     return x_train
+
+def load_images(path):
+    images = np.load(path)
+    return images
 
 
 def preprocess_df():
-    df = pd.read_csv("../labels/trainLabels15.csv")
+    df = pd.read_csv("../dataset_folds/trainFolds15.csv")
     df['path'] = df['image'].apply(
         lambda x: "../resized_train_15/" + x + ".jpg")
+    df['path'] = df['image'].apply(lambda x: "../resized_train_15/" + x + ".jpg")
+    fold_num = 4
+    level = ['level_0','level_1','level_2','level_3','level_4']
 
-    path = df['path'].values
-    labels = df['level'].values
-
-    x_train = format_images(path[:100])
-    y_train = labels[:100]
+    train =  df[df['fold'] != fold_num]
+    test  =  df[df['fold'] == fold_num]
+    """
+    For Debug
+    train = train.iloc[:100,:]
+    test = test.iloc[200:300,:]
     
+    """
+    # train = load_images("train.npy")
+    # test = load_images("test.npy")
+    x_train = format_images(train['path'].values,"train")
+    y_train = train[level].values
     x_train = x_train.reshape(x_train.shape[0],128,128,3)
-    x_val = format_images(path[100:125])
-    y_val = labels[100:125]
-    
-    x_test = format_images(path[125:150])
-    y_test = labels[125:150]
-    x_test = x_test.reshape(x_test.shape[0],128,128,3) 
-    return x_train, y_train, x_val, y_val, x_test, y_test
+
+
+    x_test = format_images(test['path'].values,"test")
+    y_test = test[level].values
+    x_test = x_test.reshape(x_test.shape[0],128,128,3)
+
+    return x_train,y_train,x_test,y_test
 
 
 if __name__ == '__main__':
-    x_train, y_train, x_val, y_val, x_test, y_test = preprocess_df()
+    x_train, y_train,x_test, y_test = preprocess_df()
     dataset = Dataset(
         training_examples=x_train,
         training_labels=y_train,
         testing_examples=x_test,
         testing_labels=y_test,
-        validation_split=0.2,
+        validation_split=0.3,
     )
     # Create backend responsible for training & validating
     backend = TFKerasBackend(dataset=dataset)

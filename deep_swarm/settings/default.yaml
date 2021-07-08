@@ -17,7 +17,7 @@ DeepSwarm:
         epochs: 1
         batch_size: 64
         patience: 5
-        loss: sparse_categorical_crossentropy
+        loss: categorical_crossentropy
         verbose: False
 
     spatial_nodes: [InputNode, Conv2DNode, DropoutSpatialNode, BatchNormalizationNode, Pool2DNode]
@@ -114,6 +114,6 @@ Nodes:
     OutputNode:
         type: Output
         attributes:
-            output_size: [10]
+            output_size: [5]
             activation: [Softmax]
         transitions: {}

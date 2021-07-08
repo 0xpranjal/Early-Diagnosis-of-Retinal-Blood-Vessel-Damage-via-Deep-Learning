@@ -1,9 +1,13 @@
-import keras
-from keras.datasets import mnist
-from keras.datasets import fashion_mnist
-from keras.datasets import cifar10
-import keras.backend
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+from tensorflow.compat.v1 import keras
+# from tensorflow.compat.v1. keras.datasets import mnist
+# from tensorflow.compat.v1.keras.datasets import fashion_mnist
+# from tensorflow.compat.v1.keras.datasets import cifar10
+from tensorflow.compat.v1.keras import backend
+#
 from sklearn.model_selection import train_test_split
 
 from population import Population
@@ -49,17 +53,19 @@ class psoCNN:
         input_height = 224
         input_channels = 3
         output_dim = 5
-        train_df = pd.read_csv('./aptos2019-blindness-detection/train.csv')
-        
+        train_df = pd.read_csv('../labels/trainLabels15.csv')
+        ####### FOR DEBUG #######
+        train_df = train_df.sample(100)
+        ########################
         N = train_df.shape[0]
         x_train = np.empty((N, 224, 224, 3), dtype=np.uint8)
 
-        for i, image_id in enumerate(tqdm(train_df['id_code'])):
+        for i, image_id in enumerate(tqdm(train_df['image'])):
             x_train[i, :, :, :] = preprocess_image(
-                f'./aptos2019-blindness-detection/train_images/{image_id}.png'
+                f'../resized_train_15/{image_id}.jpg'
             )
         
-        y_train = pd.get_dummies(train_df['diagnosis']).values
+        y_train = pd.get_dummies(train_df['level']).values
         
         print("X Train Shape: ", x_train.shape)
         print("Y Train Shape:", y_train.shape)
@@ -203,7 +209,7 @@ class psoCNN:
 
         trainable_count = 0
         for i in range(len(self.gBest.model.trainable_weights)):
-            trainable_count += keras.backend.count_params(self.gBest.model.trainable_weights[i])
+            trainable_count += backend.count_params(self.gBest.model.trainable_weights[i])
             
         print("gBest's number of trainable parameters: " + str(trainable_count))
         self.gBest.model_fit_complete(self.x_train, self.y_train, batch_size=batch_size, epochs=epochs)

@@ -3,16 +3,18 @@ from copy import deepcopy
 
 import utils
 
-import keras.backend
-from keras.models import Model, Sequential
-from keras.layers import Input, Add, Dense, Dropout, Flatten
-from keras.layers import Activation, Conv2D, MaxPooling2D, AveragePooling2D
-from keras.layers.advanced_activations import LeakyReLU
-from keras import regularizers 
-from keras.optimizers import Adam, Nadam
-from keras.preprocessing.image import ImageDataGenerator
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
-from keras.layers.normalization import BatchNormalization
+from tensorflow.compat.v1.keras import backend
+from tensorflow.compat.v1.keras.models import Model, Sequential
+from tensorflow.compat.v1.keras.layers import Input, Add, Dense, Dropout, Flatten
+from tensorflow.compat.v1.keras.layers import Activation, Conv2D, MaxPooling2D, AveragePooling2D
+from tensorflow.compat.v1.keras import regularizers
+from tensorflow.compat.v1.keras.optimizers import Adam, Nadam
+from tensorflow.compat.v1.keras.preprocessing.image import ImageDataGenerator
+
+from tensorflow.compat.v1.keras.layers import BatchNormalization
 
 import os
 import tensorflow as tf
@@ -214,5 +216,5 @@ class Particle:
     def model_delete(self):
         # This is used to free up memory during PSO training
         del self.model
-        keras.backend.clear_session()
+        backend.clear_session()
         self.model = None
