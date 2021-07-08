@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4818910-c267-421e-9429-2ad818b3188b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/deep_swarm/retinopathy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/context.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/mnist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/saves/2021-07-02-20-09-53/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/settings/default.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CNN_Architecture/b5_pipeline_m.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_Architecture/b5_pipeline_m.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/settings/default.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +48,46 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="plotJson" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Swarm-Research" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Thejin\miniconda3\envs\tensorflow\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CNN_Architecture" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CNN_Architecture/plotJson.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.plotJson" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,6 +106,10 @@
       <workItem from="1625466741623" duration="1492000" />
       <workItem from="1625494053438" duration="347000" />
       <workItem from="1625543851347" duration="969000" />
+      <workItem from="1625566776625" duration="2649000" />
+      <workItem from="1625577192583" duration="740000" />
+      <workItem from="1625589963144" duration="3641000" />
+      <workItem from="1625632335514" duration="1343000" />
     </task>
     <servers />
   </component>
@@ -95,9 +129,48 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1625632452499">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1625632452499" />
+    <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1625633691581">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625633691581" />
+    <state width="1237" height="204" key="GridCell.Tab.0.center" timestamp="1625633691581">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1625633691581" />
+    <state width="1237" height="204" key="GridCell.Tab.0.left" timestamp="1625633691580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1625633691580" />
+    <state width="1237" height="204" key="GridCell.Tab.0.right" timestamp="1625633691581">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1625633691581" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1625633691583">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1625633691583" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center" timestamp="1625633691583">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1625633691583" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left" timestamp="1625633691583">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1625633691583" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right" timestamp="1625633691583">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1625633691583" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1624986837109">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1624986837109" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Swarm_Research$plotJson.coverage" NAME="plotJson Coverage Results" MODIFIED="1625633103987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CNN_Architecture" />
   </component>
 </project>

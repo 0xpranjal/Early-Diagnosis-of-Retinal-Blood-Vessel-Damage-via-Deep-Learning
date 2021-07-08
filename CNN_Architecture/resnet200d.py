@@ -30,8 +30,8 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import StratifiedKFold
 ###################################################################
 #Configuration
-torch.cuda.set_device(1)
-MODEL_ARCH= "efficientnet_b5"
+
+MODEL_ARCH= "resnet200d"
 EPOCHS = 20
 IMG_SIZE = 512
 BATCH_SIZE = 32
@@ -42,7 +42,7 @@ SEED = 42
 MAX_NORM = 1000
 ITERS_TO_ACCUMULATE = 1
 SCHEDULER_UPDATE ='epoch' #Can be on a 'batch' basis as well
-ITER_VISUALS =500
+ITER_VISUALS = 500
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -91,9 +91,9 @@ class Model(nn.Module):  # EFFNET
     def __init__(self, model_name, num_classes, pretrained=True):
         super().__init__()
         self.model = timm.create_model(model_name, pretrained=pretrained)
-        n_features = self.model.classifier.in_features
+        n_features = self.model.fc.in_features
         self.model.global_pool = nn.Identity()
-        self.model.classifier = nn.Identity()
+        self.model.fc = nn.Identity()
         self.pooling = nn.AdaptiveAvgPool2d(1)
         self.fc = nn.Linear(n_features, num_classes)
 
@@ -273,7 +273,7 @@ def engine(device,df,fold):
                             pin_memory=True,
                             drop_last=False)
 
-    model = Model('efficientnet_b5', num_classes=5, pretrained=True)
+    model = Model('resnet200d', num_classes=5, pretrained=True)
 
     model.to(device)
 
