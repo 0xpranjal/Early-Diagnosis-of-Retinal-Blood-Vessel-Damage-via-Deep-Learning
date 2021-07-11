@@ -21,11 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4818910-c267-421e-9429-2ad818b3188b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/retinopathy.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/retinopathy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/settings/default.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/settings/default.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/psoCNN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/psoCNN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/psoCNN/particle.py" beforeDir="false" afterPath="$PROJECT_DIR$/psoCNN/particle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/psoCNN/psoCNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/psoCNN/psoCNN.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +109,7 @@
       <workItem from="1625589963144" duration="3641000" />
       <workItem from="1625632335514" duration="1343000" />
       <workItem from="1625721386424" duration="4565000" />
+      <workItem from="1625823093948" duration="710000" />
     </task>
     <servers />
   </component>
