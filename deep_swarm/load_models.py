@@ -8,11 +8,23 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score, roc_auc_score
 
+os.environ['CUDA_VISIBLE_DEVICES'] = "1"
+
+import cv2
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
 from tensorflow.compat.v1 import keras
+from tensorflow.python.framework.config import set_memory_growth
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
 
 """
     Search for the latest date_time format in the saves directory. Move into
@@ -31,10 +43,15 @@ y_test = df[df['fold'] == 4]
 y_test =  y_test.iloc[:,3:].values
 
 
-x_test = np.load("test.npy")
+x_test = np.load("../deep_swarm/test_512.npy")
 
+temp = []
+for i in range(len(x_test)):
+    temp.append(cv2.resize(x_test[i],(256,256)))
 
-model = keras.models.load_model("epoch_1")    
+x_test = np.asarray(temp)
+print(x_test.shape)
+model = keras.models.load_model("mod_name.h5")    
 #model.summary()
 
 
