@@ -17,7 +17,7 @@ def format_images(arr,name):
     for i in tqdm(arr):
         img =cv2.imread(i)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        img = cv2.resize(img,(128,128))
+        img = cv2.resize(img,(512,512))
         train_images.append(img)
     x_train = np.asarray(train_images)
     np.save(f"{name}.npy",x_train)
@@ -44,16 +44,16 @@ def preprocess_df():
     test = test.iloc[200:300,:]
     
     """
-    # train = load_images("train.npy")
-    # test = load_images("test.npy")
-    x_train = format_images(train['path'].values,"train")
+    # x_train = load_images("train.npy")
+    # x_test = load_images("test.npy")
+    x_train = format_images(train['path'].values,"train_512")
     y_train = train[level].values
-    x_train = x_train.reshape(x_train.shape[0],128,128,3)
+    x_train = x_train.reshape(x_train.shape[0],512,512,3)
 
 
-    x_test = format_images(test['path'].values,"test")
+    x_test = format_images(test['path'].values,"test_512")
     y_test = test[level].values
-    x_test = x_test.reshape(x_test.shape[0],128,128,3)
+    x_test = x_test.reshape(x_test.shape[0],512,512,3)
 
     return x_train,y_train,x_test,y_test
 
