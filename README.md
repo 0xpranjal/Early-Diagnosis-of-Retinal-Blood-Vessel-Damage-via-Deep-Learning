@@ -5,14 +5,21 @@
 * The images in the dataset have an irregular size so we use the dataset -> [Link](https://www.kaggle.com/benjaminwarner/resized-2015-2019-blindness-detection-images)
 * Total number of images is 35000 and we apply 5 fold stratified K Fold Validation.
 
-* Models to be covered
+* Models already covered
    * Efficientnet B5
    * Resnet 200D
-   * **Add in your suggestions here**
+* Models which can be covered
+   * Xception Net
+   * Vision Transformer(ViT)
 
  ## Deep Swarm(Swarm based optimisation for finding optimal Neural Network Architecture using Ant Colony Optimisation)
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
-   * Pipeline ready for training, the image size and some hyperparameters are to be decided now
+   * Pipeline ready for training
+   * Hyper parameters chosen:
+      * Image size -> 256 
+      * Number of Ants -> 8 or 16
+      * Search Depth -> 8 or 16( Keeping four experiments in mind as of now. Permuting between ants and search depth)
+      * Epochs -> 12 (Can be trained further)
    * [Paper](https://arxiv.org/abs/1905.07350)     
 
  ## psoCNN
