@@ -21,17 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4818910-c267-421e-9429-2ad818b3188b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/load_models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/mnist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/retinopathy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-01-11/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-04-46/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-05-21/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-09-12/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-11-27/deepswarm.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/deep_swarm/saves/2021-07-06-05-11-27/models/0a3cabcc683e18fe0898b26fb1d97eb760a38d8b43cd703ce33430d5effc1cbe.filepart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/load_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/load_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/retinopathy.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/retinopathy.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +51,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DeepSwarm" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -123,6 +113,8 @@
       <workItem from="1625823093948" duration="710000" />
       <workItem from="1626018974081" duration="644000" />
       <workItem from="1626069773478" duration="3715000" />
+      <workItem from="1626157439897" duration="259000" />
+      <workItem from="1626161048013" duration="833000" />
     </task>
     <servers />
   </component>
@@ -146,6 +138,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1625632452499" />
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1626168668721">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1626168668721" />
     <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1625633691581">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
