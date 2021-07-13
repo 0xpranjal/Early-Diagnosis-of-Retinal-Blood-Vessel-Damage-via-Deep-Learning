@@ -8,8 +8,9 @@
 * Models already covered
    * Efficientnet B5
    * Resnet 200D
-* Models which can be covered
    * Xception Net
+
+* Models which can be covered
    * Vision Transformer(ViT)
 
  ## Deep Swarm(Swarm based optimisation for finding optimal Neural Network Architecture using Ant Colony Optimisation)
