@@ -6,12 +6,10 @@
 * Total number of images is 35000 and we apply 5 fold stratified K Fold Validation.
 
 * Models already covered
-   * Efficientnet B5
-   * Resnet 200D
+   * Resnet 50
+   * Inception V3
    * Xception Net
 
-* Models which can be covered
-   * Vision Transformer(ViT)
 
  ## Deep Swarm(Swarm based optimisation for finding optimal Neural Network Architecture using Ant Colony Optimisation)
    * Checked for compatibility of Code in TF 2.x using MNIST Pipeline
