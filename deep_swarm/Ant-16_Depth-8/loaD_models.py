@@ -7,6 +7,9 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score, roc_auc_score
+import glob
+
+os.environ['CUDA_VISIBLE_DEVICES'] = "1"
 
 import cv2
 
@@ -15,11 +18,20 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
 from tensorflow.compat.v1 import keras
+from tensorflow.python.framework.config import set_memory_growth
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
 
 """
     Search for the latest date_time format in the saves directory. Move into
     the directory and check for best topology save and load models using keras
 """
+
 def macro_multilabel_auc(label, pred):
     aucs = []
     target_cols = [0, 1, 2, 3, 4]
@@ -33,7 +45,7 @@ y_test = df[df['fold'] == 4]
 y_test =  y_test.iloc[:,3:].values
 
 
-x_test = np.load("test_512.npy")
+x_test = np.load("../deep_swarm/test_512.npy")
 
 temp = []
 for i in range(len(x_test)):
@@ -41,16 +53,21 @@ for i in range(len(x_test)):
 
 x_test = np.asarray(temp)
 print(x_test.shape)
-model = keras.models.load_model("4_Ant")    
-#model.summary()
+model_name = glob.glob("*.h5")
+
+val_roc = np.array([])
+
+for i in model_name:
+    model = keras.models.load_model(i)    
+    #model.summary()
 
 
-preds = model.predict(x_test)
+    preds = model.predict(x_test)
 
-roc = macro_multilabel_auc(y_test,preds)
-print(f"ROC : {roc}")
-print(f"Y Test Shape: {y_test.shape}")
-print(f"Pred Shape :{preds.shape}")
+    roc = macro_multilabel_auc(y_test,preds)
+    print(f"{i} : {roc}")
+
+np.save("val_roc.npy",val_roc)
 
 #print(preds)
 #print(preds.shape)
