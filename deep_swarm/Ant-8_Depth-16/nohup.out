@@ -1,400 +1,0 @@
-2021-07-13 04:06:28.606080: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:06:29.200772: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libnvinfer.so.7
-2021-07-13 04:06:29.201404: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libnvinfer_plugin.so.7
-WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/compat/v2_compat.py:88: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
-Instructions for updating:
-non-resource variables are not supported in the long term
-  0%|          | 0/28103 [00:00<?, ?it/s]  1%|▏         | 407/28103 [00:00<00:06, 4065.40it/s]  3%|▎         | 813/28103 [00:00<00:06, 4062.69it/s]  4%|▍         | 1220/28103 [00:00<00:06, 4062.86it/s]  6%|▌         | 1628/28103 [00:00<00:06, 4065.97it/s]  7%|▋         | 2036/28103 [00:00<00:06, 4067.28it/s]  9%|▊         | 2444/28103 [00:00<00:06, 4070.57it/s] 10%|█         | 2852/28103 [00:00<00:06, 4073.11it/s] 12%|█▏        | 3261/28103 [00:00<00:06, 4078.15it/s] 13%|█▎        | 3670/28103 [00:00<00:05, 4081.16it/s] 15%|█▍        | 4079/28103 [00:01<00:05, 4081.11it/s] 16%|█▌        | 4488/28103 [00:01<00:05, 4082.28it/s] 17%|█▋        | 4902/28103 [00:01<00:05, 4098.55it/s] 19%|█▉        | 5316/28103 [00:01<00:05, 4109.77it/s] 20%|██        | 5728/28103 [00:01<00:05, 4111.63it/s] 22%|██▏       | 6137/28103 [00:01<00:05, 4099.40it/s] 23%|██▎       | 6546/28103 [00:01<00:05, 4089.61it/s] 25%|██▍       | 6954/28103 [00:01<00:05, 4085.09it/s] 26%|██▌       | 7362/28103 [00:01<00:05, 4081.45it/s] 28%|██▊       | 7771/28103 [00:01<00:04, 4081.21it/s] 29%|██▉       | 8181/28103 [00:02<00:04, 4084.62it/s] 31%|███       | 8591/28103 [00:02<00:04, 4088.12it/s] 32%|███▏      | 9001/28103 [00:02<00:04, 4088.87it/s] 33%|███▎      | 9410/28103 [00:02<00:04, 4081.74it/s] 35%|███▍      | 9819/28103 [00:02<00:04, 4076.58it/s] 36%|███▋      | 10229/28103 [00:02<00:04, 4083.26it/s] 38%|███▊      | 10638/28103 [00:02<00:04, 4081.90it/s] 39%|███▉      | 11054/28103 [00:02<00:04, 4104.82it/s] 41%|████      | 11465/28103 [00:02<00:04, 4104.78it/s] 42%|████▏     | 11876/28103 [00:02<00:03, 4096.37it/s] 44%|████▎     | 12286/28103 [00:03<00:03, 4089.67it/s] 45%|████▌     | 12695/28103 [00:03<00:03, 4083.17it/s] 47%|████▋     | 13104/28103 [00:03<00:03, 4080.88it/s] 48%|████▊     | 13513/28103 [00:03<00:03, 4079.20it/s] 50%|████▉     | 13921/28103 [00:03<00:03, 4077.12it/s] 51%|█████     | 14330/28103 [00:03<00:03, 4079.34it/s] 52%|█████▏    | 14739/28103 [00:03<00:03, 4079.84it/s] 54%|█████▍    | 15148/28103 [00:03<00:03, 4082.58it/s] 55%|█████▌    | 15558/28103 [00:03<00:03, 4085.56it/s] 57%|█████▋    | 15968/28103 [00:03<00:02, 4087.57it/s] 58%|█████▊    | 16378/28103 [00:04<00:02, 4089.75it/s] 60%|█████▉    | 16787/28103 [00:04<00:02, 4087.43it/s] 61%|██████    | 17196/28103 [00:04<00:02, 4081.61it/s] 63%|██████▎   | 17605/28103 [00:04<00:02, 4073.72it/s] 64%|██████▍   | 18015/28103 [00:04<00:02, 4078.62it/s] 66%|██████▌   | 18429/28103 [00:04<00:02, 4094.94it/s] 67%|██████▋   | 18839/28103 [00:04<00:02, 4083.78it/s] 68%|██████▊   | 19248/28103 [00:04<00:02, 4074.30it/s] 70%|██████▉   | 19656/28103 [00:04<00:02, 4017.75it/s] 71%|███████▏  | 20063/28103 [00:04<00:01, 4033.08it/s] 73%|███████▎  | 20468/28103 [00:05<00:01, 4037.08it/s] 74%|███████▍  | 20875/28103 [00:05<00:01, 4046.01it/s] 76%|███████▌  | 21282/28103 [00:05<00:01, 4052.12it/s] 77%|███████▋  | 21690/28103 [00:05<00:01, 4057.58it/s] 79%|███████▊  | 22104/28103 [00:05<00:01, 4080.16it/s] 80%|████████  | 22513/28103 [00:05<00:01, 4057.17it/s] 82%|████████▏ | 22922/28103 [00:05<00:01, 4064.83it/s] 83%|████████▎ | 23329/28103 [00:05<00:01, 4050.10it/s] 84%|████████▍ | 23735/28103 [00:05<00:01, 4039.73it/s] 86%|████████▌ | 24143/28103 [00:05<00:00, 4051.06it/s] 87%|████████▋ | 24554/28103 [00:06<00:00, 4066.19it/s] 89%|████████▉ | 24961/28103 [00:06<00:00, 4045.08it/s] 90%|█████████ | 25367/28103 [00:06<00:00, 4047.79it/s] 92%|█████████▏| 25772/28103 [00:06<00:00, 4002.43it/s] 93%|█████████▎| 26181/28103 [00:06<00:00, 4026.67it/s] 95%|█████████▍| 26588/28103 [00:06<00:00, 4038.09it/s] 96%|█████████▌| 26993/28103 [00:06<00:00, 4039.73it/s] 98%|█████████▊| 27401/28103 [00:06<00:00, 4050.70it/s] 99%|█████████▉| 27807/28103 [00:06<00:00, 4036.47it/s]100%|██████████| 28103/28103 [00:06<00:00, 4070.45it/s]
-  0%|          | 0/7023 [00:00<?, ?it/s]  8%|▊         | 560/7023 [00:00<00:01, 5594.44it/s] 16%|█▌        | 1119/7023 [00:00<00:01, 5591.75it/s] 24%|██▍       | 1682/7023 [00:00<00:00, 5602.99it/s] 32%|███▏      | 2236/7023 [00:00<00:00, 5581.10it/s] 40%|███▉      | 2792/7023 [00:00<00:00, 5572.36it/s] 48%|████▊     | 3348/7023 [00:00<00:00, 5568.46it/s] 56%|█████▌    | 3918/7023 [00:00<00:00, 5605.11it/s] 64%|██████▍   | 4478/7023 [00:00<00:00, 5601.07it/s] 72%|███████▏  | 5038/7023 [00:00<00:00, 5598.17it/s] 80%|███████▉  | 5598/7023 [00:01<00:00, 5598.43it/s] 88%|████████▊ | 6163/7023 [00:01<00:00, 5612.07it/s] 96%|█████████▌| 6725/7023 [00:01<00:00, 5613.22it/s]100%|██████████| 7023/7023 [00:01<00:00, 5598.06it/s]
--------------------------------DeepSwarm settings-------------------------------
-{
-    "DeepSwarm": {
-        "aco": {
-            "ant_count": 8,
-            "greediness": 0.5,
-            "pheromone": {
-                "decay": 0.1,
-                "evaporation": 0.1,
-                "start": 0.1,
-                "verbose": false
-            }
-        },
-        "backend": {
-            "batch_size": 16,
-            "epochs": 2,
-            "loss": "categorical_crossentropy",
-            "patience": 5,
-            "verbose": false
-        },
-        "flat_nodes": [
-            "FlattenNode",
-            "DenseNode",
-            "DropoutFlatNode",
-            "BatchNormalizationFlatNode"
-        ],
-        "max_depth": 16,
-        "metrics": "accuracy",
-        "reuse_patience": 1,
-        "save_folder": null,
-        "spatial_nodes": [
-            "InputNode",
-            "Conv2DNode",
-            "DropoutSpatialNode",
-            "BatchNormalizationNode",
-            "Pool2DNode"
-        ]
-    },
-    "Nodes": {
-        "BatchNormalizationFlatNode": {
-            "attributes": {},
-            "transitions": {
-                "DenseNode": 1.1,
-                "DropoutFlatNode": 1.1,
-                "OutputNode": 0.9
-            },
-            "type": "BatchNormalization"
-        },
-        "BatchNormalizationNode": {
-            "attributes": {},
-            "transitions": {
-                "Conv2DNode": 1.1,
-                "DropoutSpatialNode": 1.0,
-                "FlattenNode": 1.0,
-                "Pool2DNode": 1.1
-            },
-            "type": "BatchNormalization"
-        },
-        "Conv2DNode": {
-            "attributes": {
-                "activation": [
-                    "ReLU"
-                ],
-                "filter_count": [
-                    32,
-                    64,
-                    128
-                ],
-                "kernel_size": [
-                    1,
-                    3,
-                    5
-                ]
-            },
-            "transitions": {
-                "BatchNormalizationNode": 1.2,
-                "Conv2DNode": 0.8,
-                "DropoutSpatialNode": 1.1,
-                "FlattenNode": 1.0,
-                "Pool2DNode": 1.2
-            },
-            "type": "Conv2D"
-        },
-        "DenseNode": {
-            "attributes": {
-                "activation": [
-                    "ReLU",
-                    "Sigmoid"
-                ],
-                "output_size": [
-                    64,
-                    128
-                ]
-            },
-            "transitions": {
-                "BatchNormalizationFlatNode": 1.2,
-                "DenseNode": 0.8,
-                "DropoutFlatNode": 1.2,
-                "OutputNode": 1.0
-            },
-            "type": "Dense"
-        },
-        "DropoutFlatNode": {
-            "attributes": {
-                "rate": [
-                    0.1,
-                    0.3
-                ]
-            },
-            "transitions": {
-                "BatchNormalizationFlatNode": 1.0,
-                "DenseNode": 1.0,
-                "OutputNode": 0.9
-            },
-            "type": "Dropout"
-        },
-        "DropoutSpatialNode": {
-            "attributes": {
-                "rate": [
-                    0.1,
-                    0.3
-                ]
-            },
-            "transitions": {
-                "BatchNormalizationNode": 1.1,
-                "Conv2DNode": 1.1,
-                "FlattenNode": 1.0,
-                "Pool2DNode": 1.0
-            },
-            "type": "Dropout"
-        },
-        "FlattenNode": {
-            "attributes": {},
-            "transitions": {
-                "BatchNormalizationFlatNode": 0.9,
-                "DenseNode": 1.0,
-                "OutputNode": 0.8
-            },
-            "type": "Flatten"
-        },
-        "InputNode": {
-            "attributes": {
-                "shape": [
-                    [
-                        256,
-                        256,
-                        3
-                    ]
-                ]
-            },
-            "transitions": {
-                "Conv2DNode": 1.0
-            },
-            "type": "Input"
-        },
-        "OutputNode": {
-            "attributes": {
-                "activation": [
-                    "Softmax"
-                ],
-                "output_size": [
-                    5
-                ]
-            },
-            "transitions": {},
-            "type": "Output"
-        },
-        "Pool2DNode": {
-            "attributes": {
-                "pool_size": [
-                    2
-                ],
-                "pool_type": [
-                    "max",
-                    "average"
-                ],
-                "stride": [
-                    2,
-                    3
-                ]
-            },
-            "transitions": {
-                "BatchNormalizationNode": 1.1,
-                "Conv2DNode": 1.1,
-                "FlattenNode": 1.0
-            },
-            "type": "Pool2D"
-        }
-    },
-    "script": "retinopathy.py",
-    "settings_file": "/nfs/Workspace/DS_Ant-8_Depth-16/settings/default.yaml"
-}
-------------------------------STARTING ACO SEARCH-------------------------------
-WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/resource_variable_ops.py:1635: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
-Instructions for updating:
-If using Keras pass *_constraint arguments to layers.
-2021-07-13 04:06:49.471045: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
-2021-07-13 04:06:49.556400: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:06:49.556449: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:06:49.556508: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:06:49.557827: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:06:49.558121: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:06:49.559306: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:06:49.559911: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:06:49.559968: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:06:49.563125: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:06:49.574790: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2900000000 Hz
-2021-07-13 04:06:49.577784: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x60b5cf0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
-2021-07-13 04:06:49.577802: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
-2021-07-13 04:06:49.694006: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x60604b0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
-2021-07-13 04:06:49.694054: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Tesla V100-SXM2-32GB, Compute Capability 7.0
-2021-07-13 04:06:49.698531: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:06:49.698600: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:06:49.698625: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:06:49.698666: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:06:49.698688: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:06:49.698710: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:06:49.698730: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:06:49.698748: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:06:49.706461: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:06:49.706518: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:06:50.133791: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:06:50.133829: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:06:50.133835: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:06:50.137279: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-2021-07-13 04:06:51.159417: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:06:51.311328: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/init_ops.py:97: calling GlorotUniform.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
-Instructions for updating:
-Call initializer instance with the dtype argument instead of passing it to the constructor
-WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/tensorflow_core/python/ops/init_ops.py:97: calling Zeros.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
-Instructions for updating:
-Call initializer instance with the dtype argument instead of passing it to the constructor
-======= 
- Ant: 0x7ff4aa9b7438 
- Loss: 1.007674 
- Accuracy: 0.724761 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:128, kernel_size:5, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 9853d328bfdb66a7d1213ab31d59eaeb2d82e82debccca9c1e1ad4bffd17f4ad 
-=======
----------------------------Current search depth is 1----------------------------
---------------------------------GENERATING ANT 1--------------------------------
-2021-07-13 04:08:35.576867: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:08:35.576958: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:08:35.576975: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:08:35.577038: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:08:35.577051: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:08:35.577062: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:08:35.577073: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:08:35.577081: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:08:35.578516: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:08:35.578552: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:08:35.578558: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:08:35.578562: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:08:35.579997: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-======= 
- Ant: 0x7ff5c01f3470 
- Loss: 2.550745 
- Accuracy: 0.686744 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:128, kernel_size:3, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 7808e01210496b017675da5898f250386d9b9f86683440102e92c4c90bf1a21c 
-=======
---------------------------------GENERATING ANT 2--------------------------------
-2021-07-13 04:10:15.964957: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:10:15.965042: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:10:15.965056: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:10:15.965110: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:10:15.965121: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:10:15.965132: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:10:15.965143: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:10:15.965151: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:10:15.966571: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:10:15.966606: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:10:15.966611: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:10:15.966616: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:10:15.968027: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-======= 
- Ant: 0x7ff5201158d0 
- Loss: 1.100746 
- Accuracy: 0.711804 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:64, kernel_size:5, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: edd046c1e69bb01f052c622e379e7b8c3027dd0afd284b381a99a6afa7b06384 
-=======
---------------------------------GENERATING ANT 3--------------------------------
-2021-07-13 04:11:26.555520: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:11:26.555588: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:11:26.555602: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:11:26.555659: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:11:26.555672: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:11:26.555684: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:11:26.555696: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:11:26.555704: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:11:26.557086: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:11:26.557118: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:11:26.557123: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:11:26.557127: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:11:26.558540: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-======= 
- Ant: 0x7ff4aaa0d630 
- Loss: 6.013816 
- Accuracy: 0.674071 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:64, kernel_size:3, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 0dbb1e424ce95173142f51ad98b5756e6de91d2579fdfca29f9fc3d6dfd41013 
-=======
---------------------------------GENERATING ANT 4--------------------------------
-2021-07-13 04:12:37.109210: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:12:37.109303: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:12:37.109326: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:12:37.109413: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:12:37.109436: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:12:37.109475: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:12:37.109496: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:12:37.109510: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:12:37.111827: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:12:37.111871: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:12:37.111880: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:12:37.111888: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:12:37.114294: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-======= 
- Ant: 0x7ff5c762e2b0 
- Loss: 1.223375 
- Accuracy: 0.714082 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:128, kernel_size:5, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 9853d328bfdb66a7d1213ab31d59eaeb2d82e82debccca9c1e1ad4bffd17f4ad 
-=======
---------------------------------GENERATING ANT 5--------------------------------
-======= 
- Ant: 0x7ff4aa6c4710 
- Loss: 1.186593 
- Accuracy: 0.713228 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:32, kernel_size:5, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: b2a5c8d59db311a07d9f39bd16ecf27d6d2b3ab302b640a438355efc9dc8f432 
-=======
---------------------------------GENERATING ANT 6--------------------------------
-2021-07-13 04:15:15.608331: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:15:15.608420: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:15:15.608442: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:15:15.608522: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:15:15.608550: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:15:15.608569: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:15:15.608588: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:15:15.608601: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:15:15.610817: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:15:15.610867: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:15:15.610876: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:15:15.610884: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:15:15.613119: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)
-======= 
- Ant: 0x7ff520082710 
- Loss: 1.900870 
- Accuracy: 0.672932 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:64, kernel_size:3, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 0dbb1e424ce95173142f51ad98b5756e6de91d2579fdfca29f9fc3d6dfd41013 
-=======
---------------------------------GENERATING ANT 7--------------------------------
-======= 
- Ant: 0x7ff4aa8767b8 
- Loss: 3.156435 
- Accuracy: 0.684750 
- Path: InputNode(shape:(256, 256, 3)) -> Conv2DNode(filter_count:32, kernel_size:1, activation:ReLU) -> FlattenNode() -> OutputNode(output_size:5, activation:Softmax) 
- Hash: 40ed1b9c5bff85bd4226eecb6630d15213c2b2cc14180240e77fa9d495b6ecb0 
-=======
---------------------------------GENERATING ANT 8--------------------------------
-2021-07-13 04:17:09.620918: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
-pciBusID: 0000:b2:00.0 name: Tesla V100-SXM2-32GB computeCapability: 7.0
-coreClock: 1.53GHz coreCount: 80 deviceMemorySize: 31.75GiB deviceMemoryBandwidth: 836.37GiB/s
-2021-07-13 04:17:09.621006: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
-2021-07-13 04:17:09.621030: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-07-13 04:17:09.621117: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-07-13 04:17:09.621139: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-07-13 04:17:09.621159: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-07-13 04:17:09.621180: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-07-13 04:17:09.621194: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-07-13 04:17:09.623261: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-07-13 04:17:09.623301: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-07-13 04:17:09.623310: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-07-13 04:17:09.623317: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-07-13 04:17:09.625750: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 30002 MB memory) -> physical GPU (device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:b2:00.0, compute capability: 7.0)

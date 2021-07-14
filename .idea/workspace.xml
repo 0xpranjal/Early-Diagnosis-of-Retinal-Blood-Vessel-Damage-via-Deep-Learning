@@ -20,13 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4818910-c267-421e-9429-2ad818b3188b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_swarm/load_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/load_models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/history.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/val_roc.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/loaD_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/loaD_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/nohup.out" beforeDir="false" afterPath="$PROJECT_DIR$/deep_swarm/Ant-16_Depth-8/nohup.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,6 +45,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="3dbab2da-a64f-41f7-a856-be9150dee12f" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1uZrryjYkR0wdzXaQ0743B9uiqw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -83,11 +92,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.plotJson" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
