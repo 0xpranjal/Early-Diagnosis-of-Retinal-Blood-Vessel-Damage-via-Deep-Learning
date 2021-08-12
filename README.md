@@ -19,6 +19,13 @@
       * Number of Ants -> 8 or 16
       * Search Depth -> 8 or 16( Keeping four experiments in mind as of now. Permuting between ants and search depth)
       * Epochs -> 12 (Can be trained further)
+   * New set of experiments where results have been significantly better( AUC -> 0.9) 
+      * Image size -> 32(128 also on run, 256 seems to give Out of Memory error)
+      * Number of Ants -> 8
+      * Search Depth -> 32
+      * Epochs -> 5(Cause the whole thing generalises quick)
+   
+   
    * [Paper](https://arxiv.org/abs/1905.07350)     
 
  ## psoCNN
