@@ -51,9 +51,7 @@ for i in range(len(x_test)):
 
 x_test = np.asarray(temp)
 print(x_test.shape)
-model = keras.models.load_model("mod_name.h5")    
-#model.summary()
-
+model = keras.models.load_model("mod_name.h5")
 
 preds = model.predict(x_test)
 
@@ -62,8 +60,5 @@ print(f"ROC : {roc}")
 print(f"Y Test Shape: {y_test.shape}")
 print(f"Pred Shape :{preds.shape}")
 
-#print(preds)
-#print(preds.shape)
-print("Done")
 
 
