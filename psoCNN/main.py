@@ -9,33 +9,23 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    ######## Algorithm parameters ##################
     
-    # dataset = "mnist"
-    # dataset = "mnist-rotated-digits"
-    # dataset = "mnist-rotated-with-background"
-    # dataset = "rectangles"
-    # dataset = "rectangles-images"
-    # dataset = "convex"
-    # dataset = "fashion-mnist"
-    # dataset = "mnist-random-background"
-    # dataset = "mnist-background-images"
-    
-    number_runs = 20
-    number_iterations = 10
+    number_runs = 5
+    number_iterations = 12
     population_size = 10
 
-    batch_size_pso = 32
-    batch_size_full_training = 32
+    batch_size_pso = 16
+    batch_size_full_training = 16
     
-    epochs_pso = 1
-    epochs_full_training = 5
+    epochs_pso = 10
+    epochs_full_training = 30
     
     max_conv_output_channels = 256
     max_fully_connected_neurons = 300
 
-    min_layer = 5
-    max_layer = 8
+    # Range of number of layers of model assigned to each particle
+    min_layer = 10
+    max_layer = 16
 
     # Probability of each layer type (should sum to 1)
     probability_convolution = 0.6
@@ -45,10 +35,10 @@ if __name__ == '__main__':
     max_conv_kernel_size = 7
 
     Cg = 0.5
-    dropout = 0.5
+    dropout = 0.3
 
     ########### Run the algorithm ######################
-    results_path = "./results/" + "psoCNNDR" + "/"
+    results_path = "./results/" + "optimg128fold4" + "/"
 
     if not os.path.exists(results_path):
             os.makedirs(results_path)
@@ -83,7 +73,7 @@ if __name__ == '__main__':
         print('gBest architecture: ')
         print(pso.gBest)
     
-        np.save(results_path + "gBest_inter_" + str(i) + "_acc_history.npy", pso.gBest_acc)
+        np.save(results_path + "gBest_iter_" + str(i) + "_acc_history.npy", pso.gBest_acc)
 
         np.save(results_path + "gBest_iter_" + str(i) + "_test_acc_history.npy", pso.gBest_test_acc)
 
@@ -99,7 +89,8 @@ if __name__ == '__main__':
 
         # Evaluate the fully trained gBest model
         gBest_metrics = pso.evaluate_gBest(batch_size=batch_size_full_training)
-
+        print("gBest metrics: ", gBest_metrics)
+        print("best_gBest_acc", best_gBest_acc)
         if gBest_metrics[1] >= best_gBest_acc:
             best_gBest_acc = gBest_metrics[1]
 

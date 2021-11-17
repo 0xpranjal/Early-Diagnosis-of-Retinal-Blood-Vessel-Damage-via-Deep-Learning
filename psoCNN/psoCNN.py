@@ -8,7 +8,7 @@ from tensorflow.compat.v1 import keras
 # from tensorflow.compat.v1.keras.datasets import cifar10
 from tensorflow.compat.v1.keras import backend
 #
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 
 from population import Population
 
@@ -30,9 +30,9 @@ def get_pad_width(im, new_shape, is_rgb=True):
         pad_width = ((t,b), (l,r))
     return pad_width
 
-def preprocess_image(image_path, desired_size=224):
+def preprocess_image(image_path, desired_size=32):
     im = Image.open(image_path)
-    im = im.resize((desired_size, )*2, resample=Image.LANCZOS)
+    im = im.resize((desired_size,desired_size), resample=Image.LANCZOS)
     
     return im
 
@@ -49,94 +49,82 @@ class psoCNN:
         self.gBest_acc = np.zeros(n_iter)
         self.gBest_test_acc = np.zeros(n_iter)
 
-        input_width = 224
-        input_height = 224
+        input_width = 128
+        input_height = 128
         input_channels = 3
         output_dim = 5
-        train_df = pd.read_csv('../labels/trainLabels15.csv')
-        ####### FOR DEBUG #######
-        train_df = train_df.sample(100)
-        ########################
-        N = train_df.shape[0]
-        x_train = np.empty((N, 224, 224, 3), dtype=np.uint8)
+        self.fold = 4
+        self.img_size = 128
 
-        for i, image_id in enumerate(tqdm(train_df['image'])):
+
+        #reading the data info
+        df = pd.read_csv('../dataset_folds/trainFolds19_without_OH.csv')
+        train_df = df[df['fold'] != self.fold]
+        test_df = df[df['fold'] == self.fold]
+        N = train_df.shape[0]
+        x_train = np.empty((N, self.img_size, self.img_size, 3), dtype=np.uint8)
+        
+        # Resize and resample train images
+        for i, image_id in enumerate(tqdm(train_df['id_code'])):
             x_train[i, :, :, :] = preprocess_image(
-                f'../resized_train_15/{image_id}.jpg'
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
             )
         
-        y_train = pd.get_dummies(train_df['level']).values
-        
-        print("X Train Shape: ", x_train.shape)
-        print("Y Train Shape:", y_train.shape)
-        
-        y_train_multi = np.empty(y_train.shape, dtype=y_train.dtype)
-        y_train_multi[:, 4] = y_train[:, 4]
+        # Set the labels as diagnosis column in dataset
+        y_train = pd.get_dummies(train_df['diagnosis']).values
 
-        for i in range(3, -1, -1):
-            y_train_multi[:, i] = np.logical_or(y_train[:, i], y_train_multi[:, i+1])
+        Nt = test_df.shape[0]
+        x_test = np.empty((Nt, self.img_size, self.img_size, 3), dtype=np.uint8)
 
-        print("Original y_train:", y_train.sum(axis=0))
-        print("Multilabel version:", y_train_multi.sum(axis=0))
+        # Resize and resample test images
+        for i, image_id in enumerate(tqdm(test_df['id_code'])):
+            x_test[i, :, :, :] = preprocess_image(
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
+            )
 
-        x_train, x_test, y_train, y_test = train_test_split(
-            x_train, y_train_multi, 
-            test_size=0.15, 
-            random_state=2021
-        )
-        self.x_train = x_train
-        self.x_test = x_test
-        self.y_train = y_train
-        self.y_test = y_test
-        """
-        if dataset == "mnist":
-            input_width = 28
-            input_height = 28
-            input_channels = 1
-            output_dim = 10
+        y_test = pd.get_dummies(test_df['diagnosis']).values
 
-            (self.x_train, self.y_train), (self.x_test, self.y_test) = mnist.load_data()
-        """
-        
+        print("X Test Shape: ", x_test.shape)
+        print("Y Test Shape: ", y_test.shape)
 
-        self.x_train = self.x_train.reshape(self.x_train.shape[0], self.x_train.shape[1], self.x_train.shape[2], input_channels)
-        self.x_test = self.x_test.reshape(self.x_test.shape[0], self.x_test.shape[1], self.x_test.shape[2], input_channels)
-
-        self.y_train = keras.utils.to_categorical(self.y_train, output_dim)
-        self.y_test = keras.utils.to_categorical(self.y_test, output_dim)
-
+        # Initialize population
         print("Initializing population...")
         self.population = Population(pop_size, min_layer, max_layer, input_width, input_height, input_channels, conv_prob, pool_prob, fc_prob, max_conv_kernel, max_out_ch, max_fc_neurons, output_dim)
         
+        #setting the first particle as gBest
         print("Verifying accuracy of the current gBest...")
         print(self.population.particle[0])
         self.gBest = deepcopy(self.population.particle[0])
         self.gBest.model_compile(dropout_rate)
-        hist = self.gBest.model_fit(self.x_train, self.y_train, batch_size=batch_size, epochs=epochs)
-        test_metrics = self.gBest.model.evaluate(x=self.x_test, y=self.y_test, batch_size=batch_size)
+
+        hist = self.gBest.model_fit(x_train, y_train, batch_size=batch_size, epochs=epochs)
+        test_metrics = self.gBest.model.evaluate(x=x_test, y=y_test, batch_size=batch_size)
         self.gBest.model_delete()
-        
-        self.gBest_acc[0] = hist.history['accuracy'][-1]
+        print(hist.history.keys())
+        self.gBest_acc[0] = hist.history['acc'][-1]
         self.gBest_test_acc[0] = test_metrics[1]
         
-        self.population.particle[0].acc = hist.history['accuracy'][-1]
-        self.population.particle[0].pBest.acc = hist.history['accuracy'][-1]
+        self.population.particle[0].acc = hist.history['acc'][-1]
+        self.population.particle[0].pBest.acc = hist.history['acc'][-1]
 
         print("Current gBest acc: " + str(self.gBest_acc[0]) + "\n")
         print("Current gBest test acc: " + str(self.gBest_test_acc[0]) + "\n")
 
+        # Searching for new gBest in the population
         print("Looking for a new gBest in the population...")
         for i in range(1, self.pop_size):
             print('Initialization - Particle: ' + str(i+1))
             print(self.population.particle[i])
 
             self.population.particle[i].model_compile(dropout_rate)
-            hist = self.population.particle[i].model_fit(self.x_train, self.y_train, batch_size=batch_size, epochs=epochs)
+            hist = self.population.particle[i].model_fit(x_train, y_train, batch_size=batch_size, epochs=epochs)
             self.population.particle[i].model_delete()
-           
-            self.population.particle[i].acc = hist.history['accuracy'][-1]
-            self.population.particle[i].pBest.acc = hist.history['accuracy'][-1]
-
+            self.population.particle[i].acc = hist.history['acc'][-1]
+            self.population.particle[i].pBest.acc = hist.history['acc'][-1]
+            
+            #Updating the gBest if a particle with better accuracy is found
             if self.population.particle[i].pBest.acc >= self.gBest_acc[0]:
                 print("Found a new gBest.")
                 self.gBest = deepcopy(self.population.particle[i])
@@ -144,7 +132,7 @@ class psoCNN:
                 print("New gBest acc: " + str(self.gBest_acc[0]))
                 
                 self.gBest.model_compile(dropout_rate)
-                test_metrics = self.gBest.model.evaluate(x=self.x_test, y=self.y_test, batch_size=batch_size)
+                test_metrics = self.gBest.model.evaluate(x=x_test, y=y_test, batch_size=batch_size)
                 self.gBest_test_acc[0] = test_metrics[1]
                 print("New gBest test acc: " + str(self.gBest_acc[0]))
             
@@ -152,6 +140,35 @@ class psoCNN:
 
 
     def fit(self, Cg, dropout_rate):
+        
+        df = pd.read_csv('../dataset_folds/trainFolds19_without_OH.csv')
+        train_df = df[df['fold'] != self.fold]
+        test_df = df[df['fold'] == self.fold]
+        print("bef N: ", train_df.shape[0])
+        N = train_df.shape[0]
+        x_train = np.empty((N, self.img_size, self.img_size, 3), dtype=np.uint8)
+
+        # Resize and resample images
+        for i, image_id in enumerate(tqdm(train_df['id_code'])):
+            x_train[i, :, :, :] = preprocess_image(
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
+            )
+        
+        y_train = pd.get_dummies(train_df['diagnosis']).values
+
+        Nt = test_df.shape[0]
+        x_test = np.empty((Nt, self.img_size, self.img_size, 3), dtype=np.uint8)
+        
+        # Resize and resample images
+        for i, image_id in enumerate(tqdm(test_df['id_code'])):
+            x_test[i, :, :, :] = preprocess_image(
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
+            )
+
+        y_test = pd.get_dummies(test_df['diagnosis']).values
+
         for i in range(1, self.n_iter):            
             gBest_acc = self.gBest_acc[i-1]
             gBest_test_acc = self.gBest_test_acc[i-1]
@@ -170,17 +187,15 @@ class psoCNN:
 
                 # Compute the acc in the updated particle
                 self.population.particle[j].model_compile(dropout_rate)
-                hist = self.population.particle[j].model_fit(self.x_train, self.y_train, batch_size=self.batch_size, epochs=self.epochs)
+                hist = self.population.particle[j].model_fit(x_train, y_train, batch_size=self.batch_size, epochs=self.epochs)
                 self.population.particle[j].model_delete()
 
-                self.population.particle[j].acc = hist.history['accuracy'][-1]
+                self.population.particle[j].acc = hist.history['acc'][-1]
                 
                 f_test = self.population.particle[j].acc
                 pBest_acc = self.population.particle[j].pBest.acc
 
                 if f_test >= pBest_acc:
-                    print("Found a new pBest.")
-                    print("Current acc: " + str(f_test))
                     print("Past pBest acc: " + str(pBest_acc))
                     pBest_acc = f_test
                     self.population.particle[j].pBest = deepcopy(self.population.particle[j])
@@ -191,8 +206,8 @@ class psoCNN:
                         self.gBest = deepcopy(self.population.particle[j])
                         
                         self.gBest.model_compile(dropout_rate)
-                        hist = self.gBest.model_fit(self.x_train, self.y_train, batch_size=self.batch_size, epochs=self.epochs)
-                        test_metrics = self.gBest.model.evaluate(x=self.x_test, y=self.y_test, batch_size=self.batch_size)
+                        hist = self.gBest.model_fit(x_train, y_train, batch_size=self.batch_size, epochs=self.epochs)
+                        test_metrics = self.gBest.model.evaluate(x=x_test, y=y_test, batch_size=self.batch_size)
                         self.gBest.model_delete()
                         gBest_test_acc = test_metrics[1]
 
@@ -204,6 +219,23 @@ class psoCNN:
             print("Current gBest test acc: " + str(self.gBest_test_acc[i]))
 
     def fit_gBest(self, batch_size, epochs, dropout_rate):
+
+        df = pd.read_csv('../dataset_folds/trainFolds19_without_OH.csv')
+        train_df = df[df['fold'] != self.fold]
+        test_df = df[df['fold'] == self.fold]
+        print("bef N: ", train_df.shape[0])
+        N = train_df.shape[0]
+        x_train = np.empty((N, self.img_size, self.img_size, 3), dtype=np.uint8)
+
+        # Resize and resample images
+        for i, image_id in enumerate(tqdm(train_df['id_code'])):
+            x_train[i, :, :, :] = preprocess_image(
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
+            )
+        
+        y_train = pd.get_dummies(train_df['diagnosis']).values
+
         print("\nFurther training gBest model...")
         self.gBest.model_compile(dropout_rate)
 
@@ -212,14 +244,30 @@ class psoCNN:
             trainable_count += backend.count_params(self.gBest.model.trainable_weights[i])
             
         print("gBest's number of trainable parameters: " + str(trainable_count))
-        self.gBest.model_fit_complete(self.x_train, self.y_train, batch_size=batch_size, epochs=epochs)
+        self.gBest.model_fit_complete(x_train, y_train, batch_size=batch_size, epochs=epochs)
 
         return trainable_count
     
     def evaluate_gBest(self, batch_size):
+
+        df = pd.read_csv('../dataset_folds/trainFolds19_without_OH.csv')
+        train_df = df[df['fold'] != self.fold]
+        test_df = df[df['fold'] == self.fold]
+        
+        Nt = test_df.shape[0]
+        x_test = np.empty((Nt, self.img_size, self.img_size, 3), dtype=np.uint8)
+
+        for i, image_id in enumerate(tqdm(test_df['id_code'])):
+            x_test[i, :, :, :] = preprocess_image(
+                f'../resized_train_19/{image_id}.jpg',
+                desired_size = self.img_size
+            )
+
+        y_test = pd.get_dummies(test_df['diagnosis']).values
+
         print("\nEvaluating gBest model on the test set...")
         
-        metrics = self.gBest.model.evaluate(x=self.x_test, y=self.y_test, batch_size=batch_size)
+        metrics = self.gBest.model.evaluate(x=x_test, y=y_test, batch_size=batch_size)
 
         print("\ngBest model loss in the test set: " + str(metrics[0]) + " - Test set accuracy: " + str(metrics[1]))
         return metrics

@@ -22,12 +22,15 @@ import tensorflow as tf
 # Hide Tensorflow INFOS and WARNINGS
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
 
+#particle definition
 class Particle:
     def __init__(self, min_layer, max_layer, max_pool_layers, input_width, input_height, input_channels, \
         conv_prob, pool_prob, fc_prob, max_conv_kernel, max_out_ch, max_fc_neurons, output_dim):
         self.input_width = input_width
         self.input_height = input_height
         self.input_channels = input_channels
+        
+        self.batch_size = 10
 
         self.num_pool_layers = 0
         self.max_pool_layers = max_pool_layers
@@ -143,7 +146,7 @@ class Particle:
 
         return updated_list_layers
 
-    ##### Model methods ####
+    # model methods
     def model_compile(self, dropout_rate):
         list_layers = self.layers
         self.model = Sequential()
@@ -198,12 +201,10 @@ class Particle:
 
         adam = Adam(lr=0.001, beta_1=0.9, beta_2=0.999, decay=0.0)
 
-        self.model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=["accuracy"])
+        self.model.compile(loss='binary_crossentropy', optimizer=adam, metrics=["accuracy"])
     
 
     def model_fit(self, x_train, y_train, batch_size, epochs):
-        # TODO: add option to only use a sample size of the dataset
-
         hist = self.model.fit(x=x_train, y=y_train, validation_split=0.0, batch_size=batch_size, epochs=epochs)
 
         return hist
@@ -218,3 +219,5 @@ class Particle:
         del self.model
         backend.clear_session()
         self.model = None
+
+
