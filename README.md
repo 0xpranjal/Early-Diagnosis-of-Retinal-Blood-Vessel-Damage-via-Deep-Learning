@@ -1,32 +1,17 @@
 # Swarm-Research
 
-## Training plan for image models(Without Swarm Optimisation)
+## Deep CNN Models trained(Imagenet based models)
 
-- The models would be trained on the 2015 Kaggle Competition dataset-> [Link](https://www.kaggle.com/c/diabetic-retinopathy-detection)
-- The images in the dataset have an irregular size so we use the dataset -> [Link](https://www.kaggle.com/benjaminwarner/resized-2015-2019-blindness-detection-images)
-- Total number of images is 35000 and we apply 5 fold stratified K Fold Validation.
-
-- Models already covered
   - Resnet 50
   - Inception V3
   - Xception Net
 
 ## Deep Swarm(Swarm based optimisation for finding optimal Neural Network Architecture using Ant Colony Optimisation)
 
-- Checked for compatibility of Code in TF 2.x using MNIST Pipeline
-- Pipeline ready for training
-- Hyper parameters chosen:
-  - Image size -> 256
+- Hyper parameters Used:
+  - Image size -> 32
   - Number of Ants -> 8 or 16
-  - Search Depth -> 8 or 16( Keeping four experiments in mind as of now. Permuting between ants and search depth)
-  - Epochs -> 12 (Can be trained further)
-- New set of experiments where results have been significantly better( AUC -> 0.9)
-
-  - Image size -> 32(128 also on run, 256 seems to give Out of Memory error)
-  - Number of Ants -> 8
-  - Search Depth -> 32
-  - Epochs -> 5(Cause the whole thing generalises quick)
-
+  - Search Depth -> 8 or 16
 - [Paper](https://arxiv.org/abs/1905.07350)
 
 ## psoCNN
@@ -77,8 +62,3 @@ python main.py
 
 > Install the [requirements](./requirements/tensorflow_requirements.txt) before running the script.
 
-## LDWPSO CNN (Linearly Decreasing Particle Swarm Optimization Convolutional Neural Network)
-
-- The program rewrites and uses part of the Hyperactive library
-- Tested on MNIST
-- [Paper](https://arxiv.org/abs/2001.05670)
