@@ -1,4 +1,4 @@
-# Swarm-Research
+# Efficient Architecture Search in Multidimensional Space using Swarm Intelligence
 
 ## Deep CNN Models trained(Imagenet based models)
 
