@@ -19,7 +19,7 @@ In this work, we propose the usage of tailor fitted models proposed by Swarm Alg
   - Search Depth -> 8 or 16
 - [Paper -> DeepSwarm: Optimising Convolutional Neural Networks using Swarm Intelligence](https://arxiv.org/abs/1905.07350)
 
-## Particle Swarm Optimisation(Uses psoCNN library)
+## Particle Swarm Optimisation
 
 - Uses [psoCNN](https://github.com/feferna/psoCNN) for APTOS 2015 dataset
 - Script information:
