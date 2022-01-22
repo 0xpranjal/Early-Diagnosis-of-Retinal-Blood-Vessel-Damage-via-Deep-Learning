@@ -1,4 +1,4 @@
-# Efficient Architecture Search in Multidimensional Space using Swarm Intelligence
+# Efficient Architecture Search in Multidimensional Space using Computational Pathology powered Swarm Intelligence Model for Diabetic Retinopathy
 by [Pranjal Bhardwaj](https://www.linkedin.com/in/pranjal-bhardwaj-a85263188/), [Thejineaswar Guhan](https://www.linkedin.com/in/gthejin/), [Prajjwal Gupta](https://www.linkedin.com/in/prajjwal-gupta-9bb9381a5/), [Kathiravan Srinivasan](https://scholar.google.com/citations?user=pY3jLUkAAAAJ&hl=en), Senior Member, IEEE, and [Chuan-Yu Chang](https://scholar.google.com/citations?user=4iL0d3kAAAAJ&hl=en), Senior Member, IEEE
 
 ## Abstract
